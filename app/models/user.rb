@@ -13,4 +13,5 @@ class User
   field :last_sign_in_ip,  type: String
   field :sign_in_count,  type: Integer
   field :remember_created_at, type: Time
+  has_many :characters
 end

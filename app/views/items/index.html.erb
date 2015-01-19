@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Items</h1>
+
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="center">Damage</th>
+      <th class="center">AC</th>
+      <th class="center">Price</th>
+      <th>Bonus</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td style="width:65px;" class="center"><%= item.damage %></td>
+        <td class="center"><%= item.ac %></td>
+        <td style="width:65px;" class="center"><%= item.price %></td>
+        <td><%= item.bonus %></td>
+        <td><div class="btn-group btn-group-sm" role="group" aria-label="..."> <%= link_to 'Show', item, class: "btn btn-warning btn-sm" %>
+        <%= link_to 'Edit', edit_item_path(item), class: "btn btn-warning btn-sm" %>
+        <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path,  class: "btn btn-success btn-lg" %>

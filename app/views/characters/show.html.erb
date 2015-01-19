@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row"><div class="col-lg-2 col-lg-offset-5 col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5"><p class="center">
+  <strong>Name:</strong>
+  <%= @character.name %>
+</p>
+
+<p class="center">
+  <strong>Level:</strong>
+  <%= @character.level %>
+</p>
+
+<p class="center">
+  <strong>Hp:</strong>
+  <%= @character.hp %>
+</p>
+
+<p class="center">
+  <strong>Mana:</strong>
+  <%= @character.mana %>
+</p>
+
+<p class="center">
+  <strong>Gold:</strong>
+  <%= @character.gold %>
+</p>
+<p class="center">
+  <strong>Owner:</strong>
+  <% if @character.user_id %>
+    <%= @character.user.name %>
+  <% else %>
+    n/a
+  <% end %>
+</p>
+</div></div>
+
+<%= link_to 'Edit', edit_character_path(@character), class: "btn btn-info btn-sm" %> |
+<%= link_to 'Back', characters_path, class: "btn btn-info btn-sm" %>

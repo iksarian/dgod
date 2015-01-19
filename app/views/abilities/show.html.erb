@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mpcost:</strong>
+  <%= @ability.mpcost %>
+</p>
+
+<p>
+  <strong>Hpcost:</strong>
+  <%= @ability.hpcost %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @ability.description %>
+</p>
+
+<%= link_to 'Edit', edit_ability_path(@ability) %> |
+<%= link_to 'Back', abilities_path %>
