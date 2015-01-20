@@ -1,0 +1,13 @@
+<%= simple_form_for(@fight) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :fight_over, inline_label: "Test", hint: "Use characters only", placeholder: "Test here", as: :boolean %>
+    <%= f.input :turn_count, input_html: {style: "background-color:rgba(255,255,255,1);color:black;"}, collection: 1..10, prompt: "Select a number" %>
+    <%= f.input :exp_gain %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Let's Fight!" %>
+  </div>
+<% end %>

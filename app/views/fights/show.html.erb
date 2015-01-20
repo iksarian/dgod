@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fight over:</strong>
+  <%= @fight.fight_over %>
+</p>
+
+<p>
+  <strong>Turn count:</strong>
+  <%= @fight.turn_count %>
+</p>
+
+<p>
+  <strong>Exp gain:</strong>
+  <%= @fight.exp_gain %>
+</p>
+
+<%= link_to 'Edit', edit_fight_path(@fight) %> |
+<%= link_to 'Back', fights_path %>

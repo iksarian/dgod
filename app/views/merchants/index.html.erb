@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Mes</h1>
+<h1>Merchant Listing</h1>
 
-<table class="table table-stripped">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -14,9 +14,14 @@
   <tbody>
     <% @merchants.each do |merchant| %>
       <tr>
-        <td><%= merchant.name %></td>
-        <td class="center"><%= merchant.quality %></td>
-        <td><div class="btn-group btn-group-sm" role="group" aria-label="..."> <%= link_to 'Show', merchant, class: "btn btn-warning btn-sm" %>
+        <td class="col-sm-1"><%= link_to merchant.name, merchant %></td>
+        <td class="center"><% if merchant.quality == "Poor" %><span class="label label-default"><%= merchant.quality %></span>
+        <% elsif merchant.quality == "Average" %><span class="label label-info"><%= merchant.quality %></span>
+        <% elsif merchant.quality == "Improved" %><span class="label label-primary"><%= merchant.quality %></span>
+        <% elsif merchant.quality == "Artisan" %><span class="center label label-success"><%= merchant.quality %></span>
+        <% elsif merchant.quality == "Masterful" %><span class="label label-danger"><%= merchant.quality %></span>
+        <% elsif merchant.quality == "Artifact" %><span class="label label-warning"><%= merchant.quality %></span><% end %></td>
+        <td><div class="btn-group btn-group-sm" role="group" aria-label="..."> 
           <%= link_to 'Edit', edit_merchant_path(merchant), class:"btn btn-warning btn-sm" %>
         <%= link_to 'Destroy', merchant, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></div></td>
       </tr>

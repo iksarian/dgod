@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
   def create
     @character = Character.new(character_params)
     if user_signed_in?
-    @character.user_id = current_user.id if user_signed_in?
+    @character.user_id = current_user.id 
     @character.save
     else
       flash[:alert]="You must be signed in to create a character."
@@ -61,6 +61,6 @@ class CharactersController < ApplicationController
     end
 
     def character_params
-      params.require(:character).permit(:name, :level, :hp, :mana, :gold, :user_id)
+      params.require(:character).permit(:name, :profession_id, :level, :hp, :mana, :gold, :user_id)
     end
 end

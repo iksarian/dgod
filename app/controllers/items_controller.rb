@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :check_if_gm
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -42,6 +43,6 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:name, :damage, :ac, :price, :bonus)
+      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality)
     end
 end

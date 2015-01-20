@@ -5,4 +5,5 @@ class Item
   field :ac, type: Integer
   field :price, type: Integer
   field :bonus, type: Hash
+  field :quality, type: String
 end

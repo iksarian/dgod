@@ -6,6 +6,7 @@
     <%= f.input :damage %>
     <%= f.input :ac %>
     <%= f.input :price %>
+    <%= f.input :quality, collection: ["Poor", "Average", "Improved", "Artisan", "Masterful", "Artifact"], prompt: false %>
   </div>
 
   <div class="form-actions">
