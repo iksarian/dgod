@@ -1,4 +1,5 @@
 class MonstersController < ApplicationController
+  before_action :check_if_gm
   before_action :set_monster, only: [:show, :edit, :update, :destroy]
 
   respond_to :html

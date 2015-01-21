@@ -1,0 +1,15 @@
+<%= simple_form_for([@merchant, @item]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :damage %>
+    <%= f.input :ac %>
+    <%= f.input :price %>
+    <%= f.input :quality, collection: ["Poor", "Average", "Improved", "Artisan", "Masterful", "Artifact"], prompt: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

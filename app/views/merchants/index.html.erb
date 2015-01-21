@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Merchant Listing</h1>
+<h1>Commerce District</h1>
 
 <table class="table table-striped">
   <thead>
@@ -22,8 +22,10 @@
         <% elsif merchant.quality == "Masterful" %><span class="label label-danger"><%= merchant.quality %></span>
         <% elsif merchant.quality == "Artifact" %><span class="label label-warning"><%= merchant.quality %></span><% end %></td>
         <td><div class="btn-group btn-group-sm" role="group" aria-label="..."> 
-          <%= link_to 'Edit', edit_merchant_path(merchant), class:"btn btn-warning btn-sm" %>
+            <% if current_user.is_gm %>
+        <%= link_to 'Edit', edit_merchant_path(merchant), class:"btn btn-warning btn-sm" %>
         <%= link_to 'Destroy', merchant, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></div></td>
+            <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +33,6 @@
 
 <br>
 
+            <% if current_user.is_gm %>
 <%= link_to 'New Merchant', new_merchant_path, class: "btn btn-success btn-lg" %>
+            <% end %>

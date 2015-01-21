@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
   def check_if_gm
     if user_signed_in?
       if current_user.is_gm == false
-        redirect_to root_path, alert: "Only GMs have access."
+        if params[:controller] == "merchants"
+          redirect_to merchants_path, alert: "Only GMs have access."
+        else
+          redirect_to root_path, alert: "Only GMs have access."
+        end
       end
     end
   end

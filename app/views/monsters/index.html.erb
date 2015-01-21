@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Monsters</h1>
+<h1>Bestiary</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,13 +16,13 @@
   <tbody>
     <% @monsters.each do |monster| %>
       <tr>
-        <td><%= monster.name %></td>
+        <td><%= link_to monster.name, monster %></td>
         <td><%= monster.drops %></td>
         <td><%= monster.stats %></td>
         <td><%= monster.level %></td>
-        <td><%= link_to 'Show', monster %></td>
-        <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
-        <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
+          <%= link_to 'Edit', edit_monster_path(monster), class: "btn btn-warning btn-sm" %>
+          <%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm"  %></div></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Monster', new_monster_path %>
+<%= link_to 'New Monster', new_monster_path, class: "btn btn-success btn-md" %>

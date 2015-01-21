@@ -35,10 +35,8 @@
   </div></td>
   <td class="col-sm-1"> <div class="col-lg-offset-4 col-sm-1"><%= character.gold %></div></td>
   <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
-        <% #if user_signed_in? and current_user.id == @character.user_id %>
         <%= link_to 'Edit', edit_character_path(character), class: "btn btn-warning btn-sm" %>
         <%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></div></td>
-        <% #end %>
       </tr>
     <% end %>
   </tbody>

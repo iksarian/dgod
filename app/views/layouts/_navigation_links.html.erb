@@ -1,10 +1,13 @@
 <%# add navigation links to this file %>
       <ul class="nav navbar-nav">
 <% if user_signed_in? %>
-  <li><%= link_to 'Users', users_path %></li>
-  <li><%= link_to 'Characters', characters_path %></li>
-  <% if current_user.is_gm %><li><%= link_to 'Merchants', merchants_path %></li>
-    <li><%= link_to 'Items', items_path %></li><% end %>
+    <li><%= link_to 'Users', users_path %></li>
+    <li><%= link_to 'Characters', characters_path %></li>
+      <li><%= link_to 'Merchants', merchants_path %></li>
+    <% if current_user.is_gm %>
+      <li><%= link_to 'Monsters', monsters_path %></li>
+      <li><%= link_to 'Professions', professions_path %></li>
+<% end %>
 <% end %>
       </ul>
       <ul class="nav navbar-nav pull-right">

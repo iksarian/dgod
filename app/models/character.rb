@@ -7,6 +7,11 @@ class Character
   field :gold, type: Integer, default: 10
   belongs_to :user
   belongs_to :profession
+  validates_length_of :name, minimum: 1, maximum: 16
+  validates_numericality_of :level, :hp, :mana, :gold
+  validates_presence_of :name, :hp, :mana, :gold, :level
+  validates_uniqueness_of :name
+  validates_format_of :name, with: /\A\w+\z/
   def user
     User.find(self.user_id)
   end

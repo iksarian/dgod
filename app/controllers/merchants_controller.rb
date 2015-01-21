@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-  before_action :check_if_gm
+  before_action :check_if_gm, only: [:edit, :update, :destroy, :new, :create]
   before_action :set_merchant, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -14,10 +14,8 @@ class MerchantsController < ApplicationController
   end
 
   def new
-    #if user_signed_in? and current_user.id == @character.user_gm
     @merchant = Merchant.new
     respond_with(@merchant)
-   # end
   end
 
   def edit

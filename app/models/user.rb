@@ -15,4 +15,9 @@ class User
   field :remember_created_at, type: Time
   field :is_gm, type: Boolean, default: false
   has_many :characters
+  embeds_many :items
+  validates_presence_of :name, :email, :encrypted_password 
+  validates_uniqueness_of :name, :email
+  validates_length_of :name, minimum:1, maximum:16
+  validates_format_of :name, with: /\A\w+\z/
 end

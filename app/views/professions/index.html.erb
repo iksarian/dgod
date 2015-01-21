@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Professions</h1>
+<h1>Professions</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -14,16 +14,16 @@
   <tbody>
     <% @professions.each do |profession| %>
       <tr>
-        <td><%= profession.title %></td>
+        <td><%= link_to profession.title, profession %></td>
         <td><%= profession.stats %></td>
-        <td><%= link_to 'Show', profession %></td>
-        <td><%= link_to 'Edit', edit_profession_path(profession) %></td>
-        <td><%= link_to 'Destroy', profession, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><div class="btn-group btn-group-sm" role="group" aria-label="...">.
+            <%= link_to 'Edit', edit_profession_path(profession), class:"btn btn-warning btn-sm" %>
+            <%= link_to 'Destroy', profession, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %></div></td>
+       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Profession', new_profession_path %>
+<%= link_to 'New Profession', new_profession_path, class: "btn btn-success btn-md" %>
