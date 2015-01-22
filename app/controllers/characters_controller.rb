@@ -4,7 +4,7 @@ class CharactersController < ApplicationController
   respond_to :html
 
   def index
-    @characters = Character.all
+    @characters = Character.where(user_id: current_user.id)
     respond_with(@characters)
   end
 
@@ -27,9 +27,9 @@ class CharactersController < ApplicationController
   end
 
   def create
-    @character = Character.new(character_params)
+    @character = Character.new(name: params[:character][:name], profession_id: params[:character][:profession_id])
     if user_signed_in?
-    @character.user_id = current_user.id 
+    @character.user_id = current_user.id
     @character.save
     else
       flash[:alert]="You must be signed in to create a character."
@@ -39,7 +39,7 @@ class CharactersController < ApplicationController
 
   def update
     if user_signed_in? and current_user.id == @character.user_id
-    @character.update(character_params)
+    @character.update(name: params[:character][:name])
     respond_with(@character)
     else
       redirect_to characters_path, alert: "You do not have permission to edit."
@@ -61,6 +61,6 @@ class CharactersController < ApplicationController
     end
 
     def character_params
-      params.require(:character).permit(:name, :profession_id, :level, :hp, :mana, :gold, :user_id)
+      params.require(:character).permit(:name, :profession_id, :level, :hp, :mana)
     end
 end

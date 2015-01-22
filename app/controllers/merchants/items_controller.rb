@@ -1,12 +1,15 @@
 class Merchants::ItemsController < ApplicationController
-  before_action :check_if_gm
+  before_action :check_if_gm, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_merchant
   before_action :set_item, only: [:show, :edit, :update, :destroy, :buy]
   respond_to :html
 
   def buy
-    current_user.items.create(name: @item.name, damage: @item.damage, ac: @item.ac, price: @item.price, bonus: @item.bonus, quality: @item.quality)
-    redirect_to merchant_path(@merchant), notice:"You bought #{@item.name}"
+    if current_user.buy_item(@item)
+      redirect_to merchant_path(@merchant), notice:"You bought #{@item.name} for #{@item.price}gp!"
+    else
+      redirect_to merchant_path(@merchant), alert:"You can not afford that item."
+    end
   end
   def show
     respond_with(@merchant, @item)
@@ -44,6 +47,6 @@ class Merchants::ItemsController < ApplicationController
       @merchant = Merchant.find(params[:merchant_id])
     end
     def item_params
-      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality)
+      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality, :equipment_type)
     end
 end

@@ -7,6 +7,7 @@
     <%= f.input :ac %>
     <%= f.input :price %>
     <%= f.input :quality, collection: ["Poor", "Average", "Improved", "Artisan", "Masterful", "Artifact"], prompt: false %>
+    <%= f.input :equipment_type, collection: ["Helm", "Armor", "Weapon"], prompt: false %>
   </div>
 
   <div class="form-actions">

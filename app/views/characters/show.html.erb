@@ -1,10 +1,11 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-lg-4">
 <p>
   <%= "profession sprite big" %>
   </p>
-
-<div class="row"><div class="col-lg-2 col-lg-offset-5 col-md-2 col-md-offset-5 col-sm-2 col-sm-offset-5"><p class="center">
+</div>
+  <div class="col-md-4 col-sm-4 col-lg-4">
+  <p class="center">
   <strong>Name:</strong>
   <%= @character.name %>
 </p>
@@ -25,10 +26,6 @@
 </p>
 
 <p class="center">
-  <strong>Gold:</strong>
-  <%= @character.gold %>
-</p>
-<p class="center">
   <strong>Owner:</strong>
   <% if @character.user_id %>
     <%= @character.user.name %>
@@ -36,7 +33,36 @@
     n/a
   <% end %>
 </p>
-</div></div>
+  </div><div class="col-md-4 col-sm-4 col-lg-4">
+    <table class="table table-striped">
+      <thead><tr><th></th><th>Name</th><th>Bonus Stats</th><th>Actions</th></tr></thead>
+       <tbody>
+       <tr>
+         <td>Weapon</td>
+        <td><% if @character.weapon %> <%= @character.weapon.name %> <% else %> N/A <% end %></td>
+        <td><% if @character.weapon %> <%= @character.weapon.bonus %> <% else %> N/A <% end %></td>
+        <td><% if @character.weapon %> <%= link_to "Unequip", character_unequip_path(@character, @character.weapon) %> <% else %> N/A <% end %></td>
+       </tr>
+        <tr>
+         <td>Armor</td>
+        <td><% if @character.armor %> <%= @character.armor.name %> <% else %> N/A <% end %></td>
+        <td><% if @character.armor %> <%= @character.armor.bonus %> <% else %> N/A <% end %></td>
+        <td><% if @character.armor %> <%= link_to "Unequip", character_unequip_path(@character, @character.armor) %> <% else %> N/A <% end %></td>
+       </tr>
+        <tr>
+         <td>Helm</td>
+        <td><% if @character.helm %> <%= @character.helm.name %> <% else %> N/A <% end %></td>
+        <td><% if @character.helm %> <%= @character.helm.bonus %> <% else %> N/A <% end %></td>
+        <td><% if @character.helm %> <%= link_to "Unequip", character_unequip_path(@character, @character.helm) %> <% else %> N/A <% end %></td>
+      </tr>
+    </tbody></table>
+</div> </div>
+<h2> Character Inventory </h2>
+<%= render "/shared/items_table", {items: @character.items, table_type: "character_inventory"} %>
+<h2> User Inventory </h2>
+<%= render "/shared/items_table", {items: current_user.items, table_type: "user_inventory"} %>
+<%= link_to 'Edit', edit_character_path(@character), class:"btn btn-info btn-sm" %> |
+<%= link_to 'Back', characters_path, class:"btn btn-info btn-sm" %>
 
-<%= link_to 'Edit', edit_character_path(@character), class: "btn btn-info btn-sm" %> |
-<%= link_to 'Back', characters_path, class: "btn btn-info btn-sm" %>
+
+<%= link_to 'New Item', character_new_item_path(@character) %>

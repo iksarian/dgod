@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -12,7 +11,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Item Name</th>
       <th class="center">Damage</th>
       <th class="center">AC</th>
       <th class="center">Price</th>
@@ -33,14 +32,44 @@
         <td><%= item.quality %></td>
         <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
         <%= link_to 'Buy', merchant_buy_item_path(@merchant, item), class: "btn btn-info btn-sm" %>
+        <% if current_user.is_gm %>
         <%= link_to 'Edit', merchant_edit_item_path(@merchant, item), class: "btn btn-warning btn-sm" %>
         <%= link_to 'Destroy', merchant_item_path(@merchant, item), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></div></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th class="center">Damage</th>
+      <th class="center">AC</th>
+      <th class="center">Price</th>
+      <th>Bonus</th>
+      <th>Quality</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.items.each do |item| %>
+      <tr>
+        <td><%=  item.name  %></td>
+        <td style="width:65px;" class="center"><%= item.damage %></td>
+        <td class="center"><%= item.ac %></td>
+        <td style="width:65px;" class="center"><%= item.price %></td>
+        <td><%= item.bonus %></td>
+        <td><%= item.quality %>
+          <%= link_to 'Sell', sell_users_path(item), class: "btn" %>
+          <%= link_to 'Destroy', destroy_item_users_path(item), method: :delete, class: "btn" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'New Item', merchant_new_item_path(@merchant),  class: "btn btn-success btn-lg" %>
 

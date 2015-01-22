@@ -30,9 +30,5 @@
   <%= @item.quality %>
 </p>
 
-<p>
-  <strong>Type</strong>
-  <%= @item.equipment_type %>
-  </p>
-<%= link_to 'Edit', merchant_edit_item_path(@merchant, @item), class:"btn btn-info btn-sm" %> |
-<%= link_to 'Back', merchant_path(@merchant), class:"btn btn-info btn-sm" %>
+<%= link_to 'Edit', character_edit_item_path(@character, @item), class:"btn btn-info btn-sm" %> |
+<%= link_to 'Back', character_path(@character), class:"btn btn-info btn-sm" %>
