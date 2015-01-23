@@ -1,59 +1,75 @@
+
+      <p class="left">
+      <%= link_to 'Back', characters_path, class:"btn btn-info btn-sm" %>
+      </p>
 <div class="row">
-  <div class="col-md-4 col-sm-4 col-lg-4">
-<p>
-  <%= "profession sprite big" %>
-  </p>
+  <div class="col-md-2 col-sm-1 col-lg-2">
+    <div style="margin-top: 10px">
+    <%= image_tag "#{@character.profession.title.downcase}port.gif", class:"pull-right" %>
+  </div>
 </div>
-  <div class="col-md-4 col-sm-4 col-lg-4">
-  <p class="center">
-  <strong>Name:</strong>
-  <%= @character.name %>
-</p>
+  <div class="col-md-4 col-sm-6 col-lg-4">
+      <p class="center">
+      <strong>Name:</strong>
+      <%= link_to @character.name, edit_character_path(@character) %>
+      </p>
 
-<p class="center">
-  <strong>Level:</strong>
-  <%= @character.level %>
-</p>
+      <p class="center">
+      <strong>Level:</strong>
+      <%= @character.level %>
+      </p>
 
-<p class="center">
-  <strong>Hp:</strong>
-  <%= @character.hp %>
-</p>
+      <p class="center">
+      <strong>Hp:</strong>
+      <%= @character.hp %>
+      </p>
 
-<p class="center">
-  <strong>Mana:</strong>
-  <%= @character.mana %>
-</p>
+      <p class="center">
+      <strong>Mana:</strong>
+      <%= @character.mana %>
+      </p>
 
-<p class="center">
-  <strong>Owner:</strong>
-  <% if @character.user_id %>
-    <%= @character.user.name %>
-  <% else %>
-    n/a
-  <% end %>
-</p>
-  </div><div class="col-md-4 col-sm-4 col-lg-4">
+      <p class="center">
+      <strong>Owner:</strong>
+      <% if @character.user_id %>
+        <%= @character.user.name %>
+    <% else %>
+        n/a
+    <% end %>
+      </p>
+  </div>
+  <div class="col-md-2 col-sm-1 col-lg-2">
+    <div style="margin-top: 16px">
+    <%= image_tag "#{@character.profession.title.downcase}.gif", class:"pull-left" %>
+  </div>
+  </div>
+   <div class="col-md-4 col-sm-4 col-lg-4">
     <table class="table table-striped">
       <thead><tr><th></th><th>Name</th><th>Bonus Stats</th><th>Actions</th></tr></thead>
-       <tbody>
-       <tr>
-         <td>Weapon</td>
+      <tbody>
+      <tr>
+        <td>Weapon</td>
         <td><% if @character.weapon %> <%= @character.weapon.name %> <% else %> N/A <% end %></td>
         <td><% if @character.weapon %> <%= @character.weapon.bonus %> <% else %> N/A <% end %></td>
-        <td><% if @character.weapon %> <%= link_to "Unequip", character_unequip_path(@character, @character.weapon) %> <% else %> N/A <% end %></td>
-       </tr>
-        <tr>
-         <td>Armor</td>
+        <td><% if @character.weapon %> <%= link_to "Unequip", character_unequip_path(@character, @character.weapon), class:"btn btn-default" %> <% else %> N/A <% end %></td>
+      </tr>
+      <tr>
+        <td>Armor</td>
         <td><% if @character.armor %> <%= @character.armor.name %> <% else %> N/A <% end %></td>
         <td><% if @character.armor %> <%= @character.armor.bonus %> <% else %> N/A <% end %></td>
-        <td><% if @character.armor %> <%= link_to "Unequip", character_unequip_path(@character, @character.armor) %> <% else %> N/A <% end %></td>
-       </tr>
-        <tr>
-         <td>Helm</td>
+        <td><% if @character.armor %> <%= link_to "Unequip", character_unequip_path(@character, @character.armor), class:"btn btn-default" %> <% else %> N/A <% end %></td>
+      </tr>
+      <tr>
+        <td>Helm</td>
         <td><% if @character.helm %> <%= @character.helm.name %> <% else %> N/A <% end %></td>
         <td><% if @character.helm %> <%= @character.helm.bonus %> <% else %> N/A <% end %></td>
-        <td><% if @character.helm %> <%= link_to "Unequip", character_unequip_path(@character, @character.helm) %> <% else %> N/A <% end %></td>
+        <td><% if @character.helm %> <%= link_to "Unequip", character_unequip_path(@character, @character.helm), class:"btn btn-default" %> <% else %> N/A <% end %></td>
+      </tr>
+      <tr>
+        <td>Accessory</td>
+        <td><% if @character.accessory %> <%= @character.accessory.name %> <% else %> N/A <% end %></td>
+        <td><% if @character.accessory %> <%= @character.accessory.bonus %> <% else %> N/A <% end %></td>
+        <td><% if @character.accessory %> <%= link_to "Unequip", character_unequip_path(@character, @character.accessory), class:"btn btn-default" %> <% else %> N/A <% end %></td>
       </tr>
     </tbody></table>
 </div> </div>
@@ -61,8 +77,7 @@
 <%= render "/shared/items_table", {items: @character.items, table_type: "character_inventory"} %>
 <h2> User Inventory </h2>
 <%= render "/shared/items_table", {items: current_user.items, table_type: "user_inventory"} %>
-<%= link_to 'Edit', edit_character_path(@character), class:"btn btn-info btn-sm" %> |
-<%= link_to 'Back', characters_path, class:"btn btn-info btn-sm" %>
 
-
-<%= link_to 'New Item', character_new_item_path(@character) %>
+<% if current_user.is_gm %>
+  <%= link_to 'New Item', character_new_item_path(@character) %>
+ <% end %>

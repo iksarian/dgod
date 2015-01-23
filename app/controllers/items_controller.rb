@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(name: params[:item][:name], damage: params[:item][:damage], ac: params[:item][:ac], price: params[:item][:price], bonus: params[:item][:bonus], quality: params[:item][:quality], equipment_type: params[:item][:equipment_type])
     @item.save
     respond_with(@item)
   end
@@ -43,6 +43,6 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality)
+      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality, :equipment_type)
     end
 end

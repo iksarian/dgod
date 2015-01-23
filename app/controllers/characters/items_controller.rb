@@ -10,12 +10,15 @@ class Characters::ItemsController < ApplicationController
     redirect_to character_path(@character), notice:"You gave #{@character.name} #{@item.name}!"
   end
   def take
-    @character.take_item(@item)
-    redirect_to character_path(@character), notice:"You take #{@item.name} from #{@character.name}!"
+     @character.take_item(@item)
+     redirect_to character_path(@character), notice:"You take #{@item.name} from #{@character.name}!"
   end
   def equip
-    @character.equip_item(@item)
-    redirect_to request.referer, notice:"You equip #{@item.name}!"
+    if @character.equip_item(@item)
+      redirect_to request.referer, notice:"You equip #{@item.name}!"
+    else
+      redirect_to request.referer, alert:"You cannot equip this item."
+    end
   end
   def unequip
     @character.unequip_item(@item)
@@ -57,6 +60,6 @@ class Characters::ItemsController < ApplicationController
       @character = Character.find(params[:character_id])
     end
     def item_params
-      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality)
+      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality, :equipment_type)
     end
 end

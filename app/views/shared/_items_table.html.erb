@@ -7,9 +7,8 @@
       <th class="center">AC</th>
       <th class="center">Price</th>
       <th>Bonus</th>
-      <th>Quality</th>
       <th>Type</th>
-      <th>Equipped</th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,16 +21,15 @@
         <td class="center"><%= item.ac %></td>
         <td style="width:65px;" class="center"><%= item.price %></td>
         <td><%= item.bonus %></td>
-        <td><%= item.quality %></td>
         <td><%= item.equipment_type %></td>
         <td><%= item.is_equipped? %></td>
         <td><% if table_type == "user_inventory" %>
-          <%= link_to 'Give', character_give_path(@character, item), class: "btn" %>
-          <%= link_to 'Sell', sell_users_path(item), class: "btn" %>
-          <%= link_to 'Destroy', destroy_item_users_path(item), method: :delete, class: "btn" %>
+          <%= link_to 'Give', character_give_path(@character, item), class: "btn btn-primary" %>
+          <%= link_to 'Sell', sell_users_path(item), class: "btn btn-warning" %>
+          <%= link_to 'Destroy', destroy_item_users_path(item), method: :delete, class: "btn btn-danger" %>
         <% elsif table_type == "character_inventory" %>
-          <%= link_to 'Take', character_take_path(@character, item), class: "btn" %>
-          <%= link_to 'Equip', character_equip_path(@character, item), class: "btn" %>
+          <%= link_to 'Take', character_take_path(@character, item), class: "btn btn-primary" %>
+          <%= link_to 'Equip', character_equip_path(@character, item), class: "btn btn-success" %>
         <% end %>
       </tr> <% end %>
     <% end %>

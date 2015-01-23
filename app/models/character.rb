@@ -7,6 +7,7 @@ class Character
   field :weapon_id
   field :helm_id
   field :armor_id
+  field :accessory_id
   belongs_to :user
   belongs_to :profession
   embeds_many :items
@@ -19,7 +20,7 @@ class Character
     User.find(self.user_id)
   end
   def profession
-    Profession.find(self.profession_id)
+    Profession.find(self.profession_id) if self.profession_id
   end
   def helm
     self.items.find(self.helm_id) if self.helm_id
@@ -29,6 +30,9 @@ class Character
   end
   def armor
     self.items.find(self.armor_id) if self.armor_id
+  end
+  def accessory
+    self.items.find(self.accessory_id) if self.accessory_id
   end
   def give_item(item)
     self.items.create(name: item.name, damage: item.damage, ac: item.ac, price: item.price, bonus: item.bonus, quality: item.quality, equipment_type: item.equipment_type)
@@ -42,14 +46,19 @@ class Character
   def equip_item(item)
     if item.equipment_type == "Helm"
       self.helm_id = item.id
+      self.save
     elsif item.equipment_type == "Armor"
       self.armor_id = item.id
+      self.save
     elsif item.equipment_type == "Weapon"
       self.weapon_id = item.id
+      self.save
+    elsif item.equipment_type == "Accessory"
+      self.accessory_id = item.id
+      self.save
     else
       return false
     end
-    self.save
   end
   def unequip_item(item)
    if item.equipment_type == "Helm"
@@ -58,6 +67,9 @@ class Character
      self.armor_id = nil
    elsif item.equipment_type == "Weapon"
      self.weapon_id = nil
+   elsif item.equipment_type == "Accessory"
+     self.accessory_id = nil
+     self.save
    else
      return false
    end

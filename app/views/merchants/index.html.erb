@@ -5,6 +5,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th class="center">Quality</th>
       <th colspan="3"></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @merchants.each do |merchant| %>
       <tr>
+        <td class="col-sm-1"><%= image_tag "#{merchant.quality.downcase}.png" %></td>
         <td class="col-sm-1"><%= link_to merchant.name, merchant %></td>
         <td class="center"><% if merchant.quality == "Poor" %><span class="label label-default"><%= merchant.quality %></span>
         <% elsif merchant.quality == "Average" %><span class="label label-info"><%= merchant.quality %></span>

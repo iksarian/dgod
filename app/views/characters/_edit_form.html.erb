@@ -3,9 +3,11 @@
 
   <div class="form-inputs">
     <%= f.input :name, required: true  %>
-    <% if current_user.is_gm %> <%= f.input :level, :input_html => { :value => 1 } %>
-    <%= f.input :hp, :input_html => { :value => 100 } %>
-    <%= f.input :mana, :input_html => { :value => 50 }  %>
+    <% if current_user.is_gm %> 
+    <%= f.input :profession_id, collection: Profession.all, prompt: false %>
+    <%= f.input :level %>
+    <%= f.input :hp %>
+    <%= f.input :mana  %>
   <% end %>
   </div>
 

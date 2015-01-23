@@ -1,5 +1,5 @@
 class Merchants::ItemsController < ApplicationController
-  before_action :check_if_gm, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_if_gm, only: [:new, :create, :edit, :update, :destroy, :give]
   before_action :set_merchant
   before_action :set_item, only: [:show, :edit, :update, :destroy, :buy]
   respond_to :html
@@ -15,28 +15,16 @@ class Merchants::ItemsController < ApplicationController
     respond_with(@merchant, @item)
   end
 
-  def new
-    @item = @merchant.items.new
-    respond_with(@merchant, @item)
+  def give
+    @item = GlobalItem.find(params[:merchant][:add_item])
+    @merchant.give_item(@item)
+    redirect_to request.referer, notice:"You gave #{@merchant.name} the #{@item.name}!"
   end
 
-  def edit
-  end
-
-  def create
-    @item = @merchant.items.new(item_params)
-    @item.save
-    respond_with(@merchant, @item)
-  end
-
-  def update
-    @item.update(item_params)
-    respond_with(@merchant, @item)
-  end
 
   def destroy
     @item.destroy
-    respond_with(@merchant)
+    redirect_to request.referer, notice:"You removed #{@item.name}!"
   end
 
   private

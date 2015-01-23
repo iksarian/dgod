@@ -17,7 +17,7 @@ class CharactersController < ApplicationController
     @character = Character.new
     respond_with(@character)
     else
-      redirect_to characters_path, alert: "You must be signed in to create a character."
+      redirect_to request.referer, alert: "You must be signed in to create a character."
     end
   end
 
@@ -39,10 +39,15 @@ class CharactersController < ApplicationController
 
   def update
     if user_signed_in? and current_user.id == @character.user_id
-    @character.update(name: params[:character][:name])
-    respond_with(@character)
+      if current_user.is_gm
+        @character.update(name: params[:character][:name], profession_id: params[:character][:profession_id], level: params[:character][:level], hp: params[:character][:hp], mana: params[:character][:mana])
+      else
+        @character.update(name: params[:character][:name])
+      end
+      respond_with(@character)
     else
-      redirect_to characters_path, alert: "You do not have permission to edit."
+      redirect_to request.referer, alert: "You do not have permission to edit."
+      respond_with(@character)
     end
   end
 
@@ -51,7 +56,7 @@ class CharactersController < ApplicationController
     @character.destroy
     respond_with(@character)
     else
-      redirect_to characters_path, alert: "You do not have permission to destroy."
+      redirect_to request.referer, alert: "You do not have permission to destroy."
     end
   end
 

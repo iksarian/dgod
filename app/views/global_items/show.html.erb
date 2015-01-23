@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @global_item.name %>
+</p>
+
+<p>
+  <strong>Damage:</strong>
+  <%= @global_item.damage %>
+</p>
+
+<p>
+  <strong>Ac:</strong>
+  <%= @global_item.ac %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @global_item.price %>
+</p>
+
+<p>
+  <strong>Bonus:</strong>
+  <%= @global_item.bonus %>
+</p>
+
+<p>
+  <strong>Quality:</strong>
+  <%= @global_item.quality %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @global_item.equipment_type %>
+</p>
+
+<%= link_to 'Edit', edit_global_item_path(@global_item) %> |
+<%= link_to 'Back', global_items_path %>

@@ -1,77 +1,109 @@
+ <p class="left">
+    <%= link_to 'Back', merchants_path, class:"btn btn-info btn-sm" %>
+    <% if current_user.is_gm %>
+      <%= link_to 'Edit', edit_merchant_path(@merchant), class:"btn btn-info btn-sm" %> 
+  <% end %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @merchant.name %>
-</p>
+<div class="row">
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <%= image_tag "#{@merchant.quality.downcase}port.png", class:"pull-right" %>
+  </div>
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <div style="margin-top: 16px">
+    <p class="center">
+    <strong>Name:</strong>
+    <%= @merchant.name %>
+    </p>
 
-<p>
-  <strong>Quality:</strong>
-  <%= @merchant.quality %>
-</p>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Item Name</th>
-      <th class="center">Damage</th>
-      <th class="center">AC</th>
-      <th class="center">Price</th>
-      <th>Bonus</th>
-      <th>Quality</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <p class="center">
+    <strong>Quality:</strong>
+    <%= @merchant.quality %>
+    </p>
+  </div>
+  </div>
+  <div class="col-sm-4 col-md-4 col-lg-4">
+    <div style="margin-top: 10px">
+      <%= image_tag "#{@merchant.quality.downcase}.png", class:"pull-left" %>
+  </div>
+  </div>
+    
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th class="center">Damage</th>
+        <th class="center">AC</th>
+        <th class="center">Price</th>
+        <th>Bonus</th>
+        <th>Type</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
+
+    <tbody>
     <% @merchant.items.each do |item| %>
       <tr>
-        <td><%= link_to item.name, merchant_item_path(@merchant,item) %></td>
-        <td style="width:65px;" class="center"><%= item.damage %></td>
-        <td class="center"><%= item.ac %></td>
-        <td style="width:65px;" class="center"><%= item.price %></td>
-        <td><%= item.bonus %></td>
-        <td><%= item.quality %></td>
-        <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
-        <%= link_to 'Buy', merchant_buy_item_path(@merchant, item), class: "btn btn-info btn-sm" %>
-        <% if current_user.is_gm %>
-        <%= link_to 'Edit', merchant_edit_item_path(@merchant, item), class: "btn btn-warning btn-sm" %>
-        <%= link_to 'Destroy', merchant_item_path(@merchant, item), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></div></td>
-        <% end %>
-      </tr>
+      <td><%= link_to item.name, merchant_item_path(@merchant,item) %></td>
+      <td style="width:65px;" class="center"><%= item.damage %></td>
+      <td class="center"><%= item.ac %></td>
+      <td style="width:65px;" class="center"><%= item.price %></td>
+      <td><%= item.bonus %></td>
+      <td><%= item.equipment_type %></td>
+      <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
+          <%= link_to 'Buy', merchant_buy_item_path(@merchant, item), class: "btn btn-info btn-sm" %>
+          <% if current_user.is_gm %>
+            <%= link_to 'Edit', merchant_edit_item_path(@merchant, item), class: "btn btn-warning btn-sm" %>
+          <%= link_to 'Destroy', merchant_item_path(@merchant, item), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></div></td>
     <% end %>
-  </tbody>
-</table>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Item Name</th>
-      <th class="center">Damage</th>
-      <th class="center">AC</th>
-      <th class="center">Price</th>
-      <th>Bonus</th>
-      <th>Quality</th>
-      <th colspan="3"></th>
     </tr>
-  </thead>
+  <% end %>
+    </tbody>
+  </table>
+<% if current_user.is_gm %>
+<%= simple_form_for(@merchant, url: merchant_give_path(@merchant), method: :post) do |f| %>
+  <%= f.error_notification %>
 
-  <tbody>
+  <div class="form-inputs">
+    <%= f.input :add_item, collection: GlobalItem.all, prompt: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Add Item" %>
+  </div>
+<% end %>
+<% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th class="center">Damage</th>
+        <th class="center">AC</th>
+        <th class="center">Price</th>
+        <th>Bonus</th>
+        <th>Type</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
     <% current_user.items.each do |item| %>
       <tr>
-        <td><%=  item.name  %></td>
-        <td style="width:65px;" class="center"><%= item.damage %></td>
-        <td class="center"><%= item.ac %></td>
-        <td style="width:65px;" class="center"><%= item.price %></td>
-        <td><%= item.bonus %></td>
-        <td><%= item.quality %>
-          <%= link_to 'Sell', sell_users_path(item), class: "btn" %>
-          <%= link_to 'Destroy', destroy_item_users_path(item), method: :delete, class: "btn" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <td><%=  item.name  %></td>
+      <td style="width:65px;" class="center"><%= item.damage %></td>
+      <td class="center"><%= item.ac %></td>
+      <td style="width:65px;" class="center"><%= item.price %></td>
+      <td><%= item.bonus %></td>
+      <td><%= item.equipment_type %></td>
+      <td>
+        <%= link_to 'Sell', sell_users_path(item), class: "btn btn-warning" %>
+        <%= link_to 'Destroy', destroy_item_users_path(item), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
 
 
-<%= link_to 'New Item', merchant_new_item_path(@merchant),  class: "btn btn-success btn-lg" %>
 
-<%= link_to 'Edit', edit_merchant_path(@merchant), class:"btn btn-info btn-sm" %> |
-<%= link_to 'Back', merchants_path, class:"btn btn-info btn-sm" %>
+

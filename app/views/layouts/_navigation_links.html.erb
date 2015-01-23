@@ -5,6 +5,7 @@
     <li><%= link_to 'Characters', characters_path %></li>
       <li><%= link_to 'Merchants', merchants_path %></li>
     <% if current_user.is_gm %>
+      <li><%= link_to 'Global Items', global_items_path %></li>
       <li><%= link_to 'Monsters', monsters_path %></li>
       <li><%= link_to 'Professions', professions_path %></li>
 <% end %>

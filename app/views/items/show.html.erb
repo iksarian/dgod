@@ -30,5 +30,10 @@
   <%= @item.quality %>
 </p>
 
+<p>
+  <strong>Type</strong>
+  <%= @item.equipment_type %>
+  </p>
+
 <%= link_to 'Edit', edit_item_path(@item), class:"btn btn-info btn-sm" %> |
 <%= link_to 'Back', items_path, class:"btn btn-info btn-sm" %>

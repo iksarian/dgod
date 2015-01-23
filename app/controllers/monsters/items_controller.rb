@@ -1,37 +1,17 @@
 class Monsters::ItemsController < ApplicationController
   before_action :check_if_gm
   before_action :set_monster
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :take]
 
   respond_to :html
-
-
-  def show
-    respond_with(@monster, @item)
+  def give
+    @item = GlobalItem.find(params[:monster][:drops])
+    @monster.give_item(@item)
+    redirect_to request.referer, notice:"You gave #{@monster.name} the #{@item.name}!"
   end
-
-  def new
-    @item = @monster.items.new
-    respond_with(@monster, @item)
-  end
-
-  def edit
-  end
-
-  def create
-    @item = @monster.items.new(item_params)
-    @item.save
-    respond_with(@monster, @item)
-  end
-
-  def update
-    @item.update(item_params)
-    respond_with(@monster, @item)
-  end
-
-  def destroy
-    @item.destroy
-    respond_with(@monster)
+  def take
+     @monster.take_item(@item)
+     redirect_to request.referer, notice:"You remove the #{@item.name} from #{@monster.name}!"
   end
 
   private

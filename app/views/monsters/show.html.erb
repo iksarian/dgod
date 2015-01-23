@@ -1,13 +1,7 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @monster.name %>
-</p>
-
-<p>
-  <strong>Drops:</strong>
-  <%= @monster.drops %>
 </p>
 
 <p>
@@ -32,6 +26,7 @@
       <th class="center">Price</th>
       <th>Bonus</th>
       <th>Quality</th>
+      <th>Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -45,9 +40,22 @@
         <td style="width:65px;" class="center"><%= item.price %></td>
         <td><%= item.bonus %></td>
         <td><%= item.quality %></td>
+        <td><%= item.equipment_type %></td>
+        <td><%= link_to 'Take', monster_take_path(@monster, item) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Item', monster_new_item_path(@monster) %>
+<%= simple_form_for(@monster, url: monster_give_path(@monster), method: :post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :drops, collection: GlobalItem.all, prompt: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Add Item" %>
+  </div>
+<% end %>
+

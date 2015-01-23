@@ -4,7 +4,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Image</th>
+      <th></th>
       <th>Name</th>
       <th class="center">Profession</th>
       <th>Level</th>
@@ -17,7 +17,7 @@
   <tbody>
     <% @characters.each do |character| %>
       <tr>
-        <td class="col-sm-1"><%= "Profession sprite here" %></td>
+        <td class="col-sm-1"><%= image_tag "#{character.profession.title.downcase}.gif" %></td>
         <td class="col-sm-1"><%= link_to character.name, character %></td>
         <td class="col-md-1"><div class="center"><%= character.profession.title %></div></td>
         <td class="col-sm-1"><%= character.level %></td>

@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Global Items</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Damage</th>
+      <th>AC</th>
+      <th>Price</th>
+      <th>Bonus</th>
+      <th>Quality</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @global_items.each do |global_item| %>
+      <tr>
+        <td><%= link_to global_item.name, global_item %></td>
+        <td><%= global_item.damage %></td>
+        <td><%= global_item.ac %></td>
+        <td><%= global_item.price %></td>
+        <td><%= global_item.bonus %></td>
+        <td><%= global_item.quality %></td>
+        <td><%= global_item.equipment_type %></td>
+        <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
+        <% if current_user.is_gm %>
+        <%= link_to 'Edit', edit_global_item_path(global_item), class:"btn btn-warning btn-sm" %>
+        <%= link_to 'Destroy', global_item, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Global item', new_global_item_path %>

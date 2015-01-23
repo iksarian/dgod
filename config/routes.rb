@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :global_items
+
   resources :fights
 
   resources :monsters do
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
     patch "items/:id" => "monsters/items#update"
     put "items/:id" => "monsters/items#update"
     post "items" => "monsters/items#create", as: "items"
+    get "items/:id/take" => "monsters/items#take", as: "take"
+    post "items/give" => "monsters/items#give", as: "give"
   end
 
   resources :abilities
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
     put "items/:id" => "merchants/items#update"
     post "items" => "merchants/items#create", as: "items"
     get "items/:id/buy" => "merchants/items#buy", as: "buy_item"
+    post "items/give" => "merchants/items#give", as: "give"
   end
 
   resources :items
