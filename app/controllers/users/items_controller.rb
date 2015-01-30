@@ -16,7 +16,7 @@ class Users::ItemsController < ApplicationController
   end
   def destroy
     @item.destroy
-    redirect_to characters_path, notice: "#{@item.name} was destroyed."
+    redirect_to request.referer, notice: "#{@item.name} was destroyed."
   end
 
   private

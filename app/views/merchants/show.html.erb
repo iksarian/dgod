@@ -33,7 +33,9 @@
       <tr>
         <th>Item Name</th>
         <th class="center">Damage</th>
+        <th class="center">Magic Force</th>
         <th class="center">AC</th>
+        <th class="center">MR</th>
         <th class="center">Price</th>
         <th>Bonus</th>
         <th>Type</th>
@@ -47,7 +49,9 @@
       <tr>
       <td><%= link_to item.name, merchant_item_path(@merchant,item) %></td>
       <td style="width:65px;" class="center"><%= item.damage %></td>
+      <td style="width:65px;" class="center"><%= item.mf %></td>
       <td class="center"><%= item.ac %></td>
+      <td class="center"><%= item.mr %></td>
       <td style="width:65px;" class="center"><%= item.price %></td>
       <td><%= item.bonus %></td>
       <td><%= item.equipment_type %></td>
@@ -79,7 +83,9 @@
       <tr>
         <th>Item Name</th>
         <th class="center">Damage</th>
+        <th class="center">Magic Force</th>
         <th class="center">AC</th>
+        <th class="center">MR</th>
         <th class="center">Price</th>
         <th>Bonus</th>
         <th>Type</th>
@@ -92,7 +98,9 @@
       <tr>
       <td><%=  item.name  %></td>
       <td style="width:65px;" class="center"><%= item.damage %></td>
+      <td style="width:65px;" class="center"><%= item.mf %></td>
       <td class="center"><%= item.ac %></td>
+      <td class="center"><%= item.mr %></td>
       <td style="width:65px;" class="center"><%= item.price %></td>
       <td><%= item.bonus %></td>
       <td><%= item.equipment_type %></td>

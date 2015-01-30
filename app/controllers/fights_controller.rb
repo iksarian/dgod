@@ -42,6 +42,6 @@ class FightsController < ApplicationController
     end
 
     def fight_params
-      params.require(:fight).permit(:fight_over, :turn_count, :exp_gain)
+      params.require(:fight).permit(:character, :enemy, :fight_over, :turn_count, :exp_gain)
     end
 end

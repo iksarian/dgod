@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Turns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Turn count</th>
+      <th>Performer</th>
+      <th>Target</th>
+      <th>Action type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @turns.each do |turn| %>
+      <tr>
+        <td><%= turn.turn_count %></td>
+        <td><%= turn.performer_id %></td>
+        <td><%= turn.target_id %></td>
+        <td><%= turn.action_type %></td>
+        <td><%= link_to 'Show', turn %></td>
+        <td><%= link_to 'Edit', edit_turn_path(turn) %></td>
+        <td><%= link_to 'Destroy', turn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Turn', new_turn_path %>

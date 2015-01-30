@@ -1,0 +1,14 @@
+<%= simple_form_for(@turn) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :turn_count %>
+    <%= f.input :performer_id %>
+    <%= f.input :target_id %>
+    <%= f.input :action_type %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

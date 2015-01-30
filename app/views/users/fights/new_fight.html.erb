@@ -1,0 +1,12 @@
+<%= simple_form_for(@fight, url: add_character_users_path, method: :post) do |f| %>
+    <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :character, collection: Character.all, prompt: false%>
+        <%= f.input :monster, collection: GlobalMonster.all, prompt: false %>
+      </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Let's Fight!" %>
+        </div>
+      <% end %>

@@ -16,6 +16,7 @@ class User
   field :is_gm, type: Boolean, default: false
   field :gold, type: Integer, default: 0
   has_many :characters
+  belongs_to :fight
   embeds_many :items
   validates_presence_of :name, :email, :encrypted_password 
   validates_uniqueness_of :name, :email
@@ -25,7 +26,7 @@ class User
 
   def buy_item(item)
    if self.gold >= item.price
-     self.items.create(name: item.name, damage: item.damage, ac: item.ac, price: item.price, bonus: item.bonus, quality: item.quality, equipment_type: item.equipment_type)
+     self.items.create(name: item.name, damage: item.damage, mf: item.mf, ac: item.ac, mr: item.mr, price: item.price, bonus: item.bonus, classes: item.classes, quality: item.quality, equipment_type: item.equipment_type)
      unless self.is_gm
        self.gold -= item.price
        self.save

@@ -6,7 +6,10 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Stats</th>
+      <th>DMG</th>
+      <th>FORCE</th>
+      <th>AC</th>
+      <th>MR</th>
       <th>Level</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +19,10 @@
     <% @monsters.each do |monster| %>
       <tr>
         <td><%= link_to monster.name, monster %></td>
-        <td><%= monster.stats %></td>
+        <td><%= monster.damage %></td>
+        <td><%= monster.force %></td>
+        <td><%= monster.ac %></td>
+        <td><%= monster.mr %></td>
         <td><%= monster.level %></td>
         <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
           <%= link_to 'Edit', edit_monster_path(monster), class: "btn btn-warning btn-sm" %>

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-2 col-sm-1 col-lg-2 pull-right">
+    <div style="margin-top: 10px">
+      <%= image_tag "monsterport.gif", class:"pull-right" %>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-6 col-lg-4 pull-right">
+    <p class="center">
+    <strong>Name:</strong>
+    <%= monster.name %>
+    </p>
+
+    <p class="center">
+    <strong>Level:</strong>
+    <%= monster.level %>
+    </p>
+
+    <p class="center">
+    <strong>Hp:</strong>
+    <%= monster.hp %>
+    </p>
+
+    <p class="center">
+    <strong>Mana:</strong>
+    <%= monster.mana %>
+    </p>
+
+    </p>
+    <p class="center">
+    <strong>Attack:</strong>
+    <%= monster.damage %>
+    </p>
+    <p class="center">
+    <strong>Magic Force:</strong>
+    <%= monster.force %>
+    </p>
+    <p class="center">
+    <strong>Armor Class:</strong>
+    <%= monster.ac %>
+    </p>
+    <p class="center">
+    <strong>Magic Resist:</strong>
+    <%= monster.mr %>
+    </p>
+  </div>
+  <div class="col-md-2 col-sm-1 col-lg-2 pull-right">
+    <div style="margin-top: 16px">
+      <%= image_tag "monster.gif", class:"pull-left" %>
+    </div>
+  </div>
+</div>

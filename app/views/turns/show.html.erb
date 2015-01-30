@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Turn count:</strong>
+  <%= @turn.turn_count %>
+</p>
+
+<p>
+  <strong>Performer:</strong>
+  <%= @turn.performer_id %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @turn.target_id %>
+</p>
+
+<p>
+  <strong>Action type:</strong>
+  <%= @turn.action_type %>
+</p>
+
+<%= link_to 'Edit', edit_turn_path(@turn) %> |
+<%= link_to 'Back', turns_path %>

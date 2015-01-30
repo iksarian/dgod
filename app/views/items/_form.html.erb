@@ -5,8 +5,10 @@
     <%= f.input :name %>
     <%= f.input :damage %>
     <%= f.input :ac %>
+    <%= f.input :mr %>
     <%= f.input :price %>
     <%= f.input :bonus %>
+    <%= f.input :classes, :label => "Classes", :collection => ["WAR", "ARC", "WIZ", "ROG", "MNK"], :as => :check_boxes %>
     <%= f.input :quality, collection: ["Poor", "Average", "Improved", "Artisan", "Masterful", "Artifact"], prompt: false %>
     <%= f.input :equipment_type, collection: ["Helm", "Armor", "Weapon", "Accessory", "Consumable"], prompt: false %>
   </div>

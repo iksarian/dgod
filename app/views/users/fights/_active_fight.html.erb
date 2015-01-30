@@ -1,0 +1,35 @@
+<strong>Turn:</strong>
+<%= @fight.turn_count %>
+<strong>Active Fight:</strong>
+<%= @fight.fight_over %>
+<div class="row">
+  <div class="col-md-6">
+    <%= render "shared/character_card", character: @fight.character %>
+  </div>
+  <div class="col-md-6 text-right">
+  <%= render "shared/monster_card", monster: @fight.monster %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div id="fight-log" style="max-height: 100px; overflow-y: scroll; border: 1px solid rgb(204, 204, 204);">
+    <center>
+    <ol>
+      <% @fight.turns.each do |turn| %>
+        <li style="<%= 'color: red;' if turn.turn_count == @fight.turn_count %>"><%= turn.performer.name %> <%= turn.action_type.pluralize %> <%= turn.target.name %> for <%= turn.action_effect %> damage.</li>
+      <% end %>
+    </ol>
+  </center>
+  </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+    <%= link_to 'Attack', attack_users_path(@fight), class:"pull-left btn btn-default" %>
+    <%= link_to 'Defend', "#", class:"pull-left btn btn-default" %>
+    <%= link_to 'Items', "#", class:"pull-left btn btn-default"%>
+    <%= link_to 'Run', "#", class:"pull-left btn btn-default" %>
+    </div>
+  </div>
+</div>

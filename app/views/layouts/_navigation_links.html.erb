@@ -1,23 +1,33 @@
 <%# add navigation links to this file %>
-      <ul class="nav navbar-nav">
-<% if user_signed_in? %>
+<ul class="nav navbar-nav">
+  <% if user_signed_in? %>
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Characters', characters_path %></li>
+  <li><%= link_to 'Merchants', merchants_path %></li>
+  <li><%= link_to 'Fight', new_fight_users_path %></li>
+  <% if current_user.is_gm %>
+    <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GM<span class="caret"></span></a>
+  <ul class="dropdown-menu" role="menu">
+    <li><%= link_to 'Global Items', global_items_path %></li>
+    <li><%= link_to 'Global Monsters', global_monsters_path %></li>
+    <li><%= link_to 'Professions', professions_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Fight', fights_path %></li>
+    <li class="divider"></li>
     <li><%= link_to 'Users', users_path %></li>
-    <li><%= link_to 'Characters', characters_path %></li>
-      <li><%= link_to 'Merchants', merchants_path %></li>
-    <% if current_user.is_gm %>
-      <li><%= link_to 'Global Items', global_items_path %></li>
-      <li><%= link_to 'Monsters', monsters_path %></li>
-      <li><%= link_to 'Professions', professions_path %></li>
+  </ul>
+  </li>
 <% end %>
 <% end %>
-      </ul>
-      <ul class="nav navbar-nav pull-right">
-<% if user_signed_in? %>
-  <li><%= link_to "#" do %><span class="label label-warning" style="font-size:18px;"><%= current_user.gold %> gp</span><% end %></li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+  <% if user_signed_in? %>
+    <li><%= link_to "#" do %><span class="label label-warning" style="font-size:18px;"><%= current_user.gold %> gp</span><% end %></li>
   <li><%= link_to 'Edit account', edit_user_registration_path %></li>
   <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
 <% else %>
-  <li><%= link_to 'Sign in', new_user_session_path %></li>
+    <li><%= link_to 'Sign in', new_user_session_path %></li>
   <li><%= link_to 'Sign up', new_user_registration_path %></li>
 <% end %>
-      </ul>
+</ul>

@@ -1,0 +1,82 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @global_monster.name %>
+</p>
+
+<p>
+  <strong>Damage:</strong>
+  <%= @global_monster.damage %>
+</p>
+
+<p>
+  <strong>Force:</strong>
+  <%= @global_monster.force %>
+</p>
+
+<p>
+  <strong>Ac:</strong>
+  <%= @global_monster.ac %>
+</p>
+
+<p>
+  <strong>Mr:</strong>
+  <%= @global_monster.mr %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @global_monster.level %>
+</p>
+
+<p>
+  <strong>Base exp:</strong>
+  <%= @global_monster.base_exp %>
+</p>
+
+<%= link_to 'Edit', edit_global_monster_path(@global_monster) %> |
+<%= link_to 'Back', global_monsters_path %>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Item Name</th>
+      <th class="center">Damage</th>
+      <th class="center">AC</th>
+      <th class="center">Price</th>
+      <th>Bonus</th>
+      <th>Quality</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @global_monster.items.each do |item| %>
+      <tr>
+        <td><%=  item.name %></td>
+        <td style="width:65px;" class="center"><%= item.damage %></td>
+        <td class="center"><%= item.ac %></td>
+        <td style="width:65px;" class="center"><%= item.price %></td>
+        <td><%= item.bonus %></td>
+        <td><%= item.quality %></td>
+        <td><%= item.equipment_type %></td>
+        <td><%= link_to 'Take', global_monster_take_path(@global_monster, item) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= simple_form_for(@global_monster, url: global_monster_give_path(@global_monster), method: :post) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :drops, collection: GlobalItem.all, prompt: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Add Item" %>
+  </div>
+<% end %>
+

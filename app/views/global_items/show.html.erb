@@ -9,9 +9,17 @@
   <strong>Damage:</strong>
   <%= @global_item.damage %>
 </p>
+<p>
+  <strong>Magic Force:</strong>
+  <%= @global_item.mf %>
+</p>
 
 <p>
-  <strong>Ac:</strong>
+  <strong>AC:</strong>
+  <%= @global_item.ac %>
+</p>
+<p>
+  <strong>MR:</strong>
   <%= @global_item.ac %>
 </p>
 
@@ -23,6 +31,10 @@
 <p>
   <strong>Bonus:</strong>
   <%= @global_item.bonus %>
+</p>
+<p>
+  <strong>Usable by:</strong>
+ <%= render "prof_short_titles", classes: @global_item.classes %>
 </p>
 
 <p>

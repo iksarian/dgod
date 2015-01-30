@@ -1,0 +1,27 @@
+class GlobalMonsters::ItemsController < ApplicationController
+  before_action :check_if_gm
+  before_action :set_monster
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :take]
+
+  respond_to :html
+  def give
+    @item = GlobalItem.find(params[:global_monster][:drops])
+    @global_monster.give_item(@item)
+    redirect_to request.referer, notice:"You gave #{@global_monster.name} the #{@item.name}!"
+  end
+  def take
+     @global_monster.take_item(@item)
+     redirect_to request.referer, notice:"You remove the #{@item.name} from #{@global_monster.name}!"
+  end
+
+  private
+    def set_item
+      @item = @global_monster.items.find(params[:id])
+    end
+    def set_monster
+      @global_monster = GlobalMonster.find(params[:global_monster_id])
+    end
+    def item_params
+      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality)
+    end
+end

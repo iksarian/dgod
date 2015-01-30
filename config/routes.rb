@@ -1,19 +1,17 @@
 Rails.application.routes.draw do
+  resources :turns
+
+  resources :global_monsters do
+    get "items/:id/take" => "global_monsters/items#take", as: "take"
+    post "items/give" => "global_monsters/items#give", as: "give"
+
+  end
+
   resources :global_items
 
   resources :fights
 
-  resources :monsters do
-    get "items/new" => "monsters/items#new", as: "new_item"
-    get "items/:id" => "monsters/items#show", as: "item"
-    get "items/:id/edit" => "monsters/items#edit", as: "edit_item"
-    delete "items/:id" => "monsters/items#destroy"
-    patch "items/:id" => "monsters/items#update"
-    put "items/:id" => "monsters/items#update"
-    post "items" => "monsters/items#create", as: "items"
-    get "items/:id/take" => "monsters/items#take", as: "take"
-    post "items/give" => "monsters/items#give", as: "give"
-  end
+  resources :monsters
 
   resources :abilities
 
@@ -53,6 +51,9 @@ Rails.application.routes.draw do
   resources :users do
     get "items/:id/sell" => "users/items#sell", on: :collection, as: "sell"
     delete "items/:id" => "users/items#destroy", on: :collection, as: "destroy_item"
-
+    get "fight" => "users/fights#new_fight", on: :collection, as: "new_fight"
+    post "fight/add_character" => "users/fights#add_character", on: :collection, as: "add_character"
+    get "fight/:id" => "users/fights#show", as: "fight", on: :collection
+    get "fight/:id/attack" => "users/fights#attack", as: "attack", on: :collection
   end
 end

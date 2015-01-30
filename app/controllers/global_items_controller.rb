@@ -21,8 +21,12 @@ class GlobalItemsController < ApplicationController
   end
 
   def create
+    logger.info params[:global_item]
+    logger.info params[:global_item][:classes]
+    params[:global_item][:classes] = params[:global_item][:classes].reject(&:empty?)
     @global_item = GlobalItem.new(global_item_params)
-    @global_item.save
+    @global_item.classes += params[:global_item][:classes]
+    @global_item.save!
     respond_with(@global_item)
   end
 
@@ -42,6 +46,6 @@ class GlobalItemsController < ApplicationController
     end
 
     def global_item_params
-      params.require(:global_item).permit(:name, :damage, :ac, :price, :bonus, :quality, :equipment_type)
+      params.require(:global_item).permit(:name, :damage, :mf, :ac, :mr, :price, :bonus, :classes, :quality, :equipment_type)
     end
 end

@@ -49,7 +49,7 @@ class Characters::ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    respond_with(@character)
+    redirect_to request.referer, notice: "You destroyed #{@item}!"
   end
 
   private
@@ -60,6 +60,6 @@ class Characters::ItemsController < ApplicationController
       @character = Character.find(params[:character_id])
     end
     def item_params
-      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality, :equipment_type)
+      params.require(:item).permit(:name, :damage, :mf, :ac, :mr, :price, :bonus, :quality, :equipment_type)
     end
 end

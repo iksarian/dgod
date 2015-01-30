@@ -1,0 +1,40 @@
+<strong>Turn:</strong>
+<%= @fight.turn_count %>
+<strong>Active Fight:</strong>
+<%= @fight.fight_over %>
+<div class="row">
+  <div class="col-md-3">
+  <%= image_tag "#{@fight.character.profession.title.downcase}port.gif", class:"flip-image" %>
+</div>
+  <div class="col-md-6">
+  <font color="green">
+    <h3><strong><div class="center"><%= @fight.character.name %></font><font color="blue"> has defeated the </font><font color="orange"><%= @fight.monster.name %></font><font color="blue">!</div></strong></h3>
+</font>
+</div>
+  <div class="col-md-3">
+  <%= image_tag "monsterdead.gif" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag "victoryballoon.gif", class:"pull-right" %>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag "victorybell.gif" %>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag "victoryballoon.gif", class:"pull-left flip-image" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <strong><div class="center"><%= @fight.character.name %> gains <%= @fight.monster.base_exp %> experience points!</strong>
+  </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-12">
+    <strong><div class="center">You gain x gold!</strong>
+  </div>
+    </div>
+  </div>

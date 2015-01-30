@@ -10,7 +10,7 @@ class Merchant
   validates_format_of :name, with: /\A(\w|\s)+\z/
 
   def give_item(item)
-    self.items.create(name: item.name, damage: item.damage, ac: item.ac, price: item.price, bonus: item.bonus, quality: item.quality, equipment_type: item.equipment_type)
+    self.items.create(name: item.name, damage: item.damage, mf: item.mf, ac: item.ac, mr: item.mr, price: item.price, bonus: item.bonus, classes: item.classes, quality: item.quality, equipment_type: item.equipment_type)
   end
 
 

@@ -35,6 +35,6 @@ class Merchants::ItemsController < ApplicationController
       @merchant = Merchant.find(params[:merchant_id])
     end
     def item_params
-      params.require(:item).permit(:name, :damage, :ac, :price, :bonus, :quality, :equipment_type)
+      params.require(:item).permit(:name, :damage, :mf, :ac, :mr, :price, :bonus, :quality, :equipment_type)
     end
 end

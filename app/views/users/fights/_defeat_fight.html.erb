@@ -1,0 +1,45 @@
+<strong>Turn:</strong>
+<%= @fight.turn_count %>
+<strong>Active Fight:</strong>
+<%= @fight.fight_over %>
+<div class="row">
+  <div class="col-md-3">
+  <%= image_tag "sealed.gif" %>
+</div>
+  <div class="col-md-6">
+  <font color="orange">
+    <h3><strong><div class="center"><%= @fight.monster.name %></font><font color="red"> has defeated </font><font color="blue"><%= @fight.character.name %></font><font color="red">!</div></strong></h3>
+</font>
+</div>
+  <div class="col-md-3">
+  <%= image_tag "sealed.gif" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+      <%= image_tag "monsterwin.gif", class:"pull-left flip-image" %>
+      <div style="margin-top: 80px">
+      <%= image_tag "#{@fight.character.profession.title.downcase}dead.gif" %>
+    </div>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <strong><div class="center">A worthy foe. An honorable end.</strong>
+  </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-12">
+    <strong><div class="center">
+    <%= image_tag "grave.gif" %>
+      R.I.P.  <%= @fight.character.name %>
+  </strong>
+  </div>
+    </div>
+  </div>
+

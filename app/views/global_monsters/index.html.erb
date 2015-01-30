@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Global Monsters</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Damage</th>
+      <th>Force</th>
+      <th>AC</th>
+      <th>MR</th>
+      <th>Level</th>
+      <th>Base EXP</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @global_monsters.each do |global_monster| %>
+      <tr>
+        <td><%= link_to global_monster.name, global_monster %></td>
+        <td><%= global_monster.damage %></td>
+        <td><%= global_monster.force %></td>
+        <td><%= global_monster.ac %></td>
+        <td><%= global_monster.mr %></td>
+        <td><%= global_monster.level %></td>
+        <td><%= global_monster.base_exp %></td>
+         <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
+          <%= link_to 'Edit', edit_global_monster_path(global_monster), class: "btn btn-warning btn-sm" %>
+          <%= link_to 'Destroy', global_monster, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm"  %></div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Global monster', new_global_monster_path, class: "btn btn-success btn-md" %>

@@ -1,0 +1,7 @@
+<% if @fight.fight_over == false %>
+  <%= render "active_fight" %>
+<% elsif @fight.fight_over == true and @fight.win == true %>
+    <%= render "victory_fight" %>
+<% else %>
+    <%= render "defeat_fight" %>
+<% end %>
